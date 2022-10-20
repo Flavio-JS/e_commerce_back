@@ -40,7 +40,7 @@ exports.getProductsFilter = function (type) {
       ON colors.color_id = product_colors.color_id
       WHERE types.type = '${type}' 
       OR products.trademark = '${type}' 
-      OR products.name = '${type}' 
+      OR products.name ILIKE '%${type}%' 
       OR colors.color = '${type}'`
   );
 };
