@@ -8,7 +8,7 @@
 
 ## Front-end
 **Click here:**
-<a href="https://github.com/Flavio-JS" target="_blank"> Hackfashion </a>
+<a href="https://github.com/Flavio-JS/e_commerce_front" target="_blank"> Hackfashion </a>
 
 ## Available Scripts
 
