@@ -49,31 +49,40 @@ exports.getProductsFilter = function (type) {
 
 exports.getRelatedProducts = async function (productId) {
   let product_types = await productsData.getRelatedProducts(productId);
-  let relatedProducts = [];
+  let relatedProductsIds = [];
 
   for (let i = 0; i < product_types.length; i++) {
     let relatedProductsSingleType = await productsData.getRelatedProductsByType(
       product_types[i].type_id
     );
     for (let i = 0; i < relatedProductsSingleType.length; i++) {
-      relatedProducts = [
-        ...relatedProducts,
+      relatedProductsIds = [
+        ...relatedProductsIds,
         { product_id: relatedProductsSingleType[i].product_id },
       ];
     }
   }
 
-  for (let i = 0; i < relatedProducts.length; i++) {
-    for (let n = 0; n < relatedProducts.length; n++) {
+  for (let i = 0; i < relatedProductsIds.length; i++) {
+    for (let n = 0; n < relatedProductsIds.length; n++) {
       if (i !== n) {
-        if (relatedProducts[i].product_id === relatedProducts[n].product_id) {
+        if (
+          relatedProductsIds[i].product_id === relatedProductsIds[n].product_id
+        ) {
           let repeatedIndex;
-          repeatedIndex = relatedProducts.indexOf(relatedProducts[n]);
-          relatedProducts.splice(repeatedIndex, 1);
+          repeatedIndex = relatedProductsIds.indexOf(relatedProductsIds[n]);
+          relatedProductsIds.splice(repeatedIndex, 1);
         }
       }
     }
   }
 
+  let relatedProducts = [];
+  for (let i = 0; i < relatedProductsIds.length; i++) {
+    let newProduct = await productsData.getRelatedProductsData(
+      relatedProductsIds[i].product_id
+    );
+    relatedProducts = [...relatedProducts, newProduct[0]];
+  }
   return relatedProducts;
 };

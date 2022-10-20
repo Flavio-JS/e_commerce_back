@@ -56,3 +56,7 @@ exports.getRelatedProductsByType = function (type_id) {
     `SELECT product_id FROM product_types WHERE type_id = ${type_id}`
   );
 };
+
+exports.getRelatedProductsData = function (product_id) {
+  return db.query(`SELECT * FROM products WHERE product_id = ${product_id}`);
+};
