@@ -44,3 +44,15 @@ exports.getProductsFilter = function (type) {
       OR colors.color = '${type}'`
   );
 };
+
+exports.getRelatedProducts = function (productId) {
+  return db.query(
+    `SELECT type_id FROM product_types WHERE product_id = ${productId}`
+  );
+};
+
+exports.getRelatedProductsByType = function (type_id) {
+  return db.query(
+    `SELECT product_id FROM product_types WHERE type_id = ${type_id}`
+  );
+};

@@ -38,4 +38,11 @@ router.get("/productStar/:product_id", async function (req, res) {
   res.json(productStarsData);
 });
 
+router.get("/relatedProducts/:product_id", async function (req, res) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  let productId = req.params.product_id;
+  let relatedProducts = await productsService.getRelatedProducts(productId);
+  res.json(relatedProducts);
+});
+
 module.exports = router;

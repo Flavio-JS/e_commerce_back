@@ -46,3 +46,34 @@ exports.getProductStar = async function (productId) {
 exports.getProductsFilter = function (type) {
   return productsData.getProductsFilter(type);
 };
+
+exports.getRelatedProducts = async function (productId) {
+  let product_types = await productsData.getRelatedProducts(productId);
+  let relatedProducts = [];
+
+  for (let i = 0; i < product_types.length; i++) {
+    let relatedProductsSingleType = await productsData.getRelatedProductsByType(
+      product_types[i].type_id
+    );
+    for (let i = 0; i < relatedProductsSingleType.length; i++) {
+      relatedProducts = [
+        ...relatedProducts,
+        { product_id: relatedProductsSingleType[i].product_id },
+      ];
+    }
+  }
+
+  for (let i = 0; i < relatedProducts.length; i++) {
+    for (let n = 0; n < relatedProducts.length; n++) {
+      if (i !== n) {
+        if (relatedProducts[i].product_id === relatedProducts[n].product_id) {
+          let repeatedIndex;
+          repeatedIndex = relatedProducts.indexOf(relatedProducts[n]);
+          relatedProducts.splice(repeatedIndex, 1);
+        }
+      }
+    }
+  }
+
+  return relatedProducts;
+};
