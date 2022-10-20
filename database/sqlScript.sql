@@ -146,8 +146,18 @@ CREATE TABLE public.order_details (
                 CONSTRAINT order_details_pk PRIMARY KEY (order_details_id)
 );
 
-
 ALTER SEQUENCE public.order_details_order_details_id_seq OWNED BY public.order_details.order_details_id;
+
+CREATE SEQUENCE public.customer_fav_customer_fav_id_seq;
+
+CREATE TABLE public.customer_fav (
+                customer_fav_id INTEGER NOT NULL DEFAULT nextval('public.customer_fav_customer_fav_id_seq'),
+                customer_id INTEGER NOT NULL,
+                product_id INTEGER NOT NULL,
+                CONSTRAINT customer_fav_pk PRIMARY KEY (customer_fav_id)
+);
+
+ALTER SEQUENCE public.customer_fav_customer_fav_id_seq OWNED BY public.customer_fav.customer_fav_id;
 
 ALTER TABLE public.product_colors ADD CONSTRAINT colors_product_colors_fk
 FOREIGN KEY (color_id)
@@ -192,6 +202,20 @@ ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
 ALTER TABLE public.order_details ADD CONSTRAINT products_order_details_fk
+FOREIGN KEY (product_id)
+REFERENCES public.products (product_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.customer_fav ADD CONSTRAINT customer_id_customer_fav_fk
+FOREIGN KEY (customer_id)
+REFERENCES public.customer (customer_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.customer_fav ADD CONSTRAINT product_id_customer_fav_fk
 FOREIGN KEY (product_id)
 REFERENCES public.products (product_id)
 ON DELETE NO ACTION
@@ -278,36 +302,54 @@ VALUES (5, 'camiseta');
 
 
 
-INSERT INTO product_types (product_type_id, product_id, type_id)
-VALUES (1, 1, 1);
-INSERT INTO product_types (product_type_id, product_id, type_id)
-VALUES (2, 2, 1);
-INSERT INTO product_types (product_type_id, product_id, type_id)
-VALUES (3, 3, 1);
-INSERT INTO product_types (product_type_id, product_id, type_id)
-VALUES (4, 4, 5);
-INSERT INTO product_types (product_type_id, product_id, type_id)
-VALUES (5, 5, 5);
-INSERT INTO product_types (product_type_id, product_id, type_id)
-VALUES (6, 6, 5);
-INSERT INTO product_types (product_type_id, product_id, type_id)
-VALUES (7, 7, 4);
-INSERT INTO product_types (product_type_id, product_id, type_id)
-VALUES (8, 8, 4);
-INSERT INTO product_types (product_type_id, product_id, type_id)
-VALUES (9, 9, 4);
-INSERT INTO product_types (product_type_id, product_id, type_id)
-VALUES (10, 10, 2);
-INSERT INTO product_types (product_type_id, product_id, type_id)
-VALUES (11, 11, 2);
-INSERT INTO product_types (product_type_id, product_id, type_id)
-VALUES (12, 12, 2);
-INSERT INTO product_types (product_type_id, product_id, type_id)
-VALUES (13, 13, 3);
-INSERT INTO product_types (product_type_id, product_id, type_id)
-VALUES (14, 14, 3);
-INSERT INTO product_types (product_type_id, product_id, type_id)
-VALUES (15, 15, 3);
+INSERT INTO product_types ( product_id, type_id)
+VALUES ( 1, 1);
+INSERT INTO product_types ( product_id, type_id)
+VALUES ( 1, 2);
+INSERT INTO product_types ( product_id, type_id)
+VALUES ( 2, 1);
+INSERT INTO product_types ( product_id, type_id)
+VALUES ( 2, 2);
+INSERT INTO product_types ( product_id, type_id)
+VALUES ( 3, 1);
+INSERT INTO product_types ( product_id, type_id)
+VALUES ( 3, 2);
+INSERT INTO product_types ( product_id, type_id)
+VALUES ( 4, 5);
+INSERT INTO product_types ( product_id, type_id)
+VALUES ( 5, 5);
+INSERT INTO product_types ( product_id, type_id)
+VALUES ( 6, 5);
+INSERT INTO product_types ( product_id, type_id)
+VALUES ( 7, 4);
+INSERT INTO product_types ( product_id, type_id)
+VALUES ( 7, 3);
+INSERT INTO product_types ( product_id, type_id)
+VALUES ( 8, 4);
+INSERT INTO product_types ( product_id, type_id)
+VALUES ( 8, 3);
+INSERT INTO product_types ( product_id, type_id)
+VALUES ( 9, 4);
+INSERT INTO product_types ( product_id, type_id)
+VALUES ( 9, 3);
+INSERT INTO product_types ( product_id, type_id)
+VALUES ( 10, 2);
+INSERT INTO product_types ( product_id, type_id)
+VALUES ( 10, 3);
+INSERT INTO product_types ( product_id, type_id)
+VALUES ( 11, 2);
+INSERT INTO product_types ( product_id, type_id)
+VALUES ( 11, 3);
+INSERT INTO product_types ( product_id, type_id)
+VALUES ( 12, 2);
+INSERT INTO product_types ( product_id, type_id)
+VALUES ( 12, 3);
+INSERT INTO product_types ( product_id, type_id)
+VALUES ( 13, 3);
+INSERT INTO product_types ( product_id, type_id)
+VALUES ( 14, 3);
+INSERT INTO product_types ( product_id, type_id)
+VALUES ( 15, 3);
 
 
 
