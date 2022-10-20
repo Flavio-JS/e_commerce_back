@@ -5,14 +5,10 @@
 - <a href="https://github.com/geovannacas" target="_blank"> Geovanna Cunha </a>
 - <a href="https://github.com/vitu2" target="_blank"> Victor Emanuel </a>
 - <a href="https://github.com/Flavio-JS" target="_blank"> Flávio Filho </a>
-## Technologies
-- ![](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
-- ![](https://img.shields.io/badge/Amazon_AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white)
-- ![](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
-- ![](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)
+
 ## Front-end
 **Click here:**
-<a href="https://github.com/hackadev2022/hack-fashion-react" target="_blank"> Hackfashion </a>
+<a href="https://github.com/Flavio-JS" target="_blank"> Hackfashion </a>
 
 ## Available Scripts
 
