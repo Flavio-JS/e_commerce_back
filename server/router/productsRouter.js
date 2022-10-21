@@ -65,7 +65,7 @@ router.put("/favProduct", async function (req, res) {
   res.send(favProduct);
 });
 
-router.delete("/favProduct", async function (req, res) {
+router.post("/deletFavProduct", async function (req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   let productId = req.body.product_id;
   let userId = req.body.user_id;
