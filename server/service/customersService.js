@@ -28,38 +28,8 @@ exports.postLogin = async function (customer_email) {
   return customer;
 };
 
-exports.postCustomer = function (
-  nome,
-  email,
-  senha,
-  celular,
-  cep,
-  endereço,
-  numero,
-  complemento,
-  referencia,
-  bairro,
-  selectedEstados,
-  city
-) {
-  return customersData.postCustomer(
-    nome,
-    email,
-    senha,
-    celular,
-    cep,
-    endereço,
-    numero,
-    complemento,
-    referencia,
-    bairro,
-    selectedEstados,
-    city
-  );
-};
-
-exports.customerteste = function (name, email, hashPassword, phone) {
-  return customersData.customerteste(name, email, hashPassword, phone);
+exports.customer = function (name, email, hashPassword, phone) {
+  return customersData.customer(name, email, hashPassword, phone);
 };
 
 exports.hashPassword = function (loginEmail) {
