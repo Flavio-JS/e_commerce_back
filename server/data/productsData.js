@@ -60,3 +60,14 @@ exports.getRelatedProductsByType = function (type_id) {
 exports.getRelatedProductsData = function (product_id) {
   return db.query(`SELECT * FROM products WHERE product_id = ${product_id}`);
 };
+
+exports.putFavProduct = function (productId, userId) {
+  return db.none(`INSERT INTO customer_fav (customer_id, product_id) 
+  VALUES (${userId}, (${productId}))`);
+};
+
+exports.deleteFavProduct = function (productId, userId) {
+  return db.none(
+    `DELETE FROM customer_fav WHERE product_id = ${productId} AND customer_id = ${userId}`
+  );
+};

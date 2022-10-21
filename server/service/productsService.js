@@ -86,3 +86,23 @@ exports.getRelatedProducts = async function (productId) {
   }
   return relatedProducts;
 };
+
+exports.putFavProduct = async function (productId, userId) {
+  try {
+    await productsData.putFavProduct(productId, userId);
+
+    return "sucess";
+  } catch (error) {
+    return error;
+  }
+};
+
+exports.deleteFavProduct = async function (productId, userId) {
+  try {
+    await productsData.deleteFavProduct(productId, userId);
+
+    return "sucess";
+  } catch (error) {
+    return error;
+  }
+};
