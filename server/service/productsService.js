@@ -119,3 +119,12 @@ exports.deleteFavProduct = async function (productId, userId) {
     return error;
   }
 };
+
+exports.getCustomerFavProduct = async function (customerId) {
+  try {
+    let products = await productsData.getCustomerFavProduct(customerId);
+    return products;
+  } catch (error) {
+    return error;
+  }
+};

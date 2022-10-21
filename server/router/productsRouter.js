@@ -75,4 +75,11 @@ router.post("/deletFavProduct", async function (req, res) {
   res.send(favProduct);
 });
 
+router.get("/getCustomerFavProduct/:customer_id", async function (req, res) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  let customerId = req.params.customer_id;
+  let products = await productsService.getCustomerFavProduct(customerId);
+  res.json(products);
+});
+
 module.exports = router;

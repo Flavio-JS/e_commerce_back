@@ -22,7 +22,8 @@ exports.getProductStar = function (productId) {
 
 exports.getProductsFilter = function (type) {
   return db.query(
-    `SELECT DISTINCT products.product_id, 
+    `SELECT DISTINCT 
+      products.product_id, 
       products.name, 
       products.img_link, 
       products.price, 
@@ -75,5 +76,23 @@ exports.putFavProduct = function (productId, userId) {
 exports.deleteFavProduct = function (productId, userId) {
   return db.none(
     `DELETE FROM customer_fav WHERE product_id = ${productId} AND customer_id = ${userId}`
+  );
+};
+
+exports.getCustomerFavProduct = function (customerId) {
+  return db.query(
+    `SELECT DISTINCT 
+    products.product_id, 
+    products.name, 
+    products.img_link, 
+    products.price, 
+    products.trademark, 
+    products.offer_percent, 
+    products.in_stock 
+    FROM customer_fav 
+    INNER JOIN products 
+    ON customer_fav.product_id = products.product_id 
+    WHERE customer_fav.customer_id = ${customerId}
+    `
   );
 };
