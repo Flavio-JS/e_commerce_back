@@ -87,6 +87,19 @@ exports.getRelatedProducts = async function (productId) {
   return relatedProducts;
 };
 
+exports.getFavProduct = async function (productId, userId) {
+  try {
+    let productFav = await productsData.getFavProduct(productId, userId);
+    if (productFav.length > 0) {
+      return [{ fav: "fav" }];
+    } else {
+      return [{ fav: "notFav" }];
+    }
+  } catch (error) {
+    return error;
+  }
+};
+
 exports.putFavProduct = async function (productId, userId) {
   try {
     await productsData.putFavProduct(productId, userId);

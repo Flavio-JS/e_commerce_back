@@ -45,6 +45,16 @@ router.get("/relatedProducts/:product_id", async function (req, res) {
   res.json(relatedProducts);
 });
 
+router.get("/favProduct/:user_id/:product_id", async function (req, res) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  let productId = req.params.product_id;
+  let userId = req.params.user_id;
+
+  let favProduct = await productsService.getFavProduct(productId, userId);
+
+  res.send(favProduct);
+});
+
 router.put("/favProduct", async function (req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   let productId = req.body.product_id;

@@ -61,6 +61,12 @@ exports.getRelatedProductsData = function (product_id) {
   return db.query(`SELECT * FROM products WHERE product_id = ${product_id}`);
 };
 
+exports.getFavProduct = function (productId, userId) {
+  return db.query(
+    `SELECT * FROM customer_fav WHERE product_id = ${productId} AND customer_id = ${userId}`
+  );
+};
+
 exports.putFavProduct = function (productId, userId) {
   return db.none(`INSERT INTO customer_fav (customer_id, product_id) 
   VALUES (${userId}, (${productId}))`);
