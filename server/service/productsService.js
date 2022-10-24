@@ -102,7 +102,9 @@ exports.getFavProduct = async function (productId, userId) {
 
 exports.putFavProduct = async function (productId, userId) {
   try {
-    await productsData.putFavProduct(productId, userId);
+    if (userId !== "") {
+      await productsData.putFavProduct(productId, userId);
+    }
 
     return "sucess";
   } catch (error) {
