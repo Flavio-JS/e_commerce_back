@@ -48,13 +48,15 @@ exports.getProductsFilter = function (type) {
 };
 
 exports.getRelatedProducts = async function (productId) {
-  let product_types = await productsData.getRelatedProducts(productId);
+  let product_types = await productsData.getProductTypes(productId);
   let relatedProductsIds = [];
 
   for (let i = 0; i < product_types.length; i++) {
-    let relatedProductsSingleType = await productsData.getRelatedProductsByType(
-      product_types[i].type_id
-    );
+    let relatedProductsSingleType =
+      await productsData.getRelatedProductsIdByType(
+        product_types[i].type_id,
+        productId
+      );
     for (let i = 0; i < relatedProductsSingleType.length; i++) {
       relatedProductsIds = [
         ...relatedProductsIds,
@@ -69,8 +71,7 @@ exports.getRelatedProducts = async function (productId) {
         if (
           relatedProductsIds[i].product_id === relatedProductsIds[n].product_id
         ) {
-          let repeatedIndex;
-          repeatedIndex = relatedProductsIds.indexOf(relatedProductsIds[n]);
+          let repeatedIndex = relatedProductsIds.indexOf(relatedProductsIds[n]);
           relatedProductsIds.splice(repeatedIndex, 1);
         }
       }
