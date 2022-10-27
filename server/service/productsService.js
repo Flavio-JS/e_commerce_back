@@ -52,15 +52,15 @@ exports.getRelatedProducts = async function (productId) {
   let relatedProductsIds = [];
 
   for (let i = 0; i < product_types.length; i++) {
-    let relatedProductsSingleType =
+    let relatedProductsIdsSingleType =
       await productsData.getRelatedProductsIdByType(
         product_types[i].type_id,
         productId
       );
-    for (let i = 0; i < relatedProductsSingleType.length; i++) {
+    for (let i = 0; i < relatedProductsIdsSingleType.length; i++) {
       relatedProductsIds = [
         ...relatedProductsIds,
-        { product_id: relatedProductsSingleType[i].product_id },
+        { product_id: relatedProductsIdsSingleType[i].product_id },
       ];
     }
   }
