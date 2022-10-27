@@ -6,23 +6,7 @@ exports.getAddressId = function (customer_id) {
   );
 };
 
-exports.postAddress = function (
-  cep,
-  endereço,
-  numero,
-  complemento,
-  referencia,
-  bairro,
-  cidade,
-  estados
-) {
-  return db.query(
-    `INSERT INTO address_hackfashion (address, uf, city, cep) 
-         VALUES ('${endereço}', '${estados}', '${cidade}', '${cep}')`
-  );
-};
-
-exports.postAddressTeste = function (customer_id, address, uf, city, cep) {
+exports.postAddress = function (customer_id, address, uf, city, cep) {
   return db.none(
     `
     INSERT INTO address (customer_id, address, uf, city, cep)

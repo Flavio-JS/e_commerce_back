@@ -44,7 +44,7 @@ router.post("/address", async function (req, res) {
   let city = req.body.city;
   let cep = req.body.cep;
 
-  await addressService.postAddressTeste(customer_id, address, uf, city, cep);
+  await addressService.postAddress(customer_id, address, uf, city, cep);
 
   res.send("Endereço cadastrado !");
 });

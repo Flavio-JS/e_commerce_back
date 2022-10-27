@@ -4,28 +4,8 @@ exports.getAddressId = function (customer_id) {
   return addressData.getAddressId(customer_id);
 };
 
-exports.postAddress = function (
-  cep,
-  endereço,
-  numero,
-  complemento,
-  referencia,
-  bairro,
-  estados
-) {
-  return addressData.postAddress(
-    cep,
-    endereço,
-    numero,
-    complemento,
-    referencia,
-    bairro,
-    estados
-  );
-};
-
-exports.postAddressTeste = function (customer_id, address, uf, city, cep) {
-  return addressData.postAddressTeste(customer_id, address, uf, city, cep);
+exports.postAddress = function (customer_id, address, uf, city, cep) {
+  return addressData.postAddress(customer_id, address, uf, city, cep);
 };
 
 exports.postAddressData = function (customer_id) {
